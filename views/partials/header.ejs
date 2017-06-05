@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css">
+        <link  rel="stylesheet" type="text/css" href="/css/custom.css">
+        <title>BOTL</title>
+    </head>
+    <body>
+        
+        <div class="ui menu">
+    <div class="item">
+        <a href="/" class="ui icon button">
+        <i class="book grey icon"></i>
+    </a>
+    
+    </div>
+              <%  if (currentUser) { %>
+            <div class="item">
+            <h3>Hi <%= currentUser.username %> </h3>
+        </div>
+            <% } %>
+
+    <div class="right menu">
+        <div class="item">
+            <div class="ui action input">
+                <input type="text" name="search" placeholder="Search...">
+                <button class="ui icon button">
+                    <i class="search icon"></i>
+                </button>
+            </div>
+        </div>
+        <div class="item">
+          <%  if (!currentUser) { %>
+                <a href="/login" class="ui fluid large pink submit button icon">
+                <i class="sign in icon"></i> Sign In
+            </a>
+            <% } else { %>
+                <a href="/logout" class="ui fluid large pink submit button icon">
+                <i class="sign out icon"></i> Sign Out
+            </a>
+            <% } %>
+
+        </div>
+    </div>
+</div>
+        

@@ -1,0 +1,65 @@
+<% include partials/header %>
+
+<div class="ui container">
+    <h1>Editing Asset</h1>
+    <hr>
+    <form action="/assets/<%=asset._id%>?_method=PUT" method="POST" class="ui form">
+        <div class="ui segment">
+            <h2 class="ui dividing header"> EDITING - <%= asset.hostname %> </h2>
+            <div class="five fields">
+                <div class="required field">
+                    <label>Hostname</label>
+                    <input type="text" name="assetData[hostname]" value="<%= asset.hostname %>">
+                </div>
+                <div class="required field">
+                    <label>Serial Number</label>
+                    <input type="text" name="assetData[serialnumber]" value="<%= asset.serialnumber %>">
+                </div>
+                <div class="field">
+                    <label>IP Address</label>
+                    <input type="text" name="assetData[ipaddress]" value="<%= asset.ipaddress %>">
+                </div>
+                <div class="field">
+                    <label>IPv6 Address</label>
+                    <input type="text" name="assetData[ipv6]" value="<%= asset.ipv6 %>">
+                </div>
+                <div class="required field">
+                    <label>Operating System</label>
+                    <input type="text" name="assetData[operatingsystem]" value="<%= asset.operatingsystem %>">
+                </div>
+            </div>
+            <div class="six fields">
+                <div class="required field">
+                    <label>Model Type</label>
+                    <input type="text" name="assetData[machinemodel]" value="<%= asset.machinemodel %>">
+                </div>
+                <div class="required field">
+                    <label>Machine Type</label>
+                    <input type="text" name="assetData[machinetype]" value="<%= asset.machinetype %>">
+                </div>
+                <div class="required field">
+                    <label>Location</label>
+                    <input type="text" name="assetData[location]" value="<%= asset.location %>">
+                </div>
+                <div class="field">
+                    <label>Eth Port</label>
+                    <input type="text" name="assetData[ethport]" value="<%= asset.ethport %>">
+                </div>
+                <div class="field">
+                    <label>Net Port</label>
+                    <input type="text" name="assetData[netport]" value="<%= asset.netport %>">
+                </div>
+                <div class="field">
+                    <label>Group</label>
+                    <input type="text" name="assetData[group]" value="<%= asset.group %>">
+                </div>
+            </div>
+        <div class="form-group">
+            <button class="btn btn-lg btn-success btn-block">Submit!</button>
+        </div>
+    </form>
+    
+    </div>
+</div>
+
+<%include partials/footer %>

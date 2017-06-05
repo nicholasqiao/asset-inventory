@@ -1,0 +1,123 @@
+<% include partials/header %>
+
+<div class="ui container">
+    <h1 class="ui header">
+        <%= asset.hostname %>
+        <span> - Online/Offline</span>
+        <span> - In Nagios/Not in Nagios</span>
+    </h1>
+
+    <div class="ui divider"></div>
+
+    <a class="ui green button" href="/assets/<%=asset._id%>/edit">
+        <i class="edit icon"></i>
+        Edit
+    </a>
+    <form class="ui form" id="delete" action="/assets/<%=asset._id%>?_method=DELETE" method="POST">
+        <button class="ui red button">
+            <i class="trash icon"></i>
+            Delete
+        </button>
+    </form>
+
+    <table class="ui celled table">
+        <thead>
+            <tr>
+                <th>Serial Number</th>
+                <th>IP Address</th>
+                <th>Location</th>
+                <th>Ethernet Port</th>
+                <th>Network Switch Port</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><%= asset.serialnumber %></th>
+                <th><%= asset.ipaddress %></th>
+                <th><%= asset.location %></th>
+                <th><%= asset.ethport %></th>
+                <th><%= asset.netport %></th>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="ui celled table">
+        <thead>
+            <tr>
+                <th>Machine Type</th>
+                <th>Machine Model</th>
+                <th>Operating System</th>
+                <th>Group</th>
+                <th>IPv6</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><%= asset.machinetype %></th>
+                <th><%= asset.machinemodel %></th>
+                <th><%= asset.operatingsystem %></th>
+                <th><%= asset.group %></th>
+                <th><%= asset.ipv6 %></th>
+            </tr>
+        </tbody>
+    </table>
+    
+    <% if (currentUser) { %>
+    <button class="ui fluid white button huge">
+        <i class="spy icon"></i>
+        Secret Knowledgebase
+    </button>
+    <% } %>
+
+    <table class="ui celled table">
+        <h3>Quick Notes</h3>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Comment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% asset.notes.forEach(function(note){ %>
+            <tr>
+                <td class="collapsing">
+                    <%= note.author.username %> <br>
+                    <%= note.created.toDateString() %>
+                </td>
+                <td>
+                    <%= note.text %>
+                       
+                        <% if(currentUser){ %>
+                        <% if(note.author.id.toString() == currentUser._id.toString()) { %>
+                    <br>
+                    <a href="">
+                        <i class="setting blue icon"></i>
+                    </a>
+                    <a href="">
+                        <i class="remove red icon"></i>
+                    </a>
+                    <% } %>
+                    <% } %>
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <%  if (currentUser) { %>
+    <form class="ui form" action="/assets/<%=asset._id%>/notes" method="POST">
+        <div class="field">
+            <h3>Add Quick Note</h3>
+            <textarea name="newNote"></textarea>
+        </div>
+        <button class="ui blue button">
+            <i class="checkmark icon"></i>
+            Submit
+        </button>
+    </form>
+    <% } %>
+
+    <div class="main container"></div>
+</div>
+
+<%include partials/footer %>

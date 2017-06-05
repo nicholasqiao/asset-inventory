@@ -1,0 +1,73 @@
+<% include partials/header %>
+
+<!-- NAV BAR HERE -->
+
+<div class="ui container">
+    <div class="ui segment">
+        <form class="ui form" action="/assets" method="POST">
+            <h2 class="ui dividing header">New Entry</h2>
+            <div class="five fields">
+                <div class="required field">
+                    <label>Hostname</label>
+                    <input type="text" name="newAsset[hostname]" placeholder="Hostname">
+                </div>
+                <div class="required field">
+                    <label>Serial Number</label>
+                    <input type="text" name="newAsset[serialnumber]"  placeholder="Serial Number">
+                </div>
+                <div class="field">
+                    <label>IP Address</label>
+                    <input type="text" name="newAsset[ipaddress]"  placeholder="IP Address">
+                </div>
+                <div class="field">
+                    <label>IPv6 Address</label>
+                    <input type="text" name="newAsset[ipv6]"  placeholder="IPv6 Address">
+                </div>
+                <div class="required field">
+                    <label>Operating System</label>
+                    <input type="text" name="newAsset[operatingsystem]"  placeholder="Operating System">
+                </div>
+            </div>
+            <div class="six fields">
+                <div class="required field">
+                    <label>Model Type</label>
+                    <input type="text" name="newAsset[machinemodel]"  placeholder="E.g. 9005-2U">
+                </div>
+                <div class="required field">
+                    <label>Machine Type</label>
+                    <input type="text" name="newAsset[machinetype]"  placeholder="E.g. 7199-42X">
+                </div>
+                <div class="required field">
+                    <label>Location</label>
+                    <input type="text" name="newAsset[location]"  placeholder="Location">
+                </div>
+                <div class="field">
+                    <label>Eth Port</label>
+                    <input type="text" name="newAsset[ethport]"  placeholder="Eth Port">
+                </div>
+                <div class="field">
+                    <label>Net Port</label>
+                    <input type="text" name="newAsset[netport]"  placeholder="Net Port">
+                </div>
+                <div class="field">
+                    <label>Group</label>
+                    <input type="text" name="newAsset[group]"  placeholder="Group">
+                </div>
+            </div>
+            
+            
+            <div class="field">
+                <label>Notes</label>
+                <textarea rows="4" name="newAsset[note]"></textarea>
+            </div>
+
+
+
+
+            <button class="ui green button" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+<%include partials/footer %>
+

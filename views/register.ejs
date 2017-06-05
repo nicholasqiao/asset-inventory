@@ -1,0 +1,31 @@
+<% include partials/header %>
+
+<!-- NAV BAR HERE -->
+
+<div class="ui container">
+    <div class="ui segment">
+        <form class="ui form" action="/register" method="POST">
+            <h2 class="ui dividing header">New User</h2>
+   
+                <div class="required field">
+                    <label>Username</label>
+                    <input type="text" name="username" placeholder="Username">
+                </div>
+                <div class="required field">
+                    <label>E-mail</label>
+                    <input type="text" name="email"  placeholder="E-mail">
+                </div>
+                <div class="required field">
+                    <label>Password</label>
+                    <input type="text" name="password"  placeholder="Password">
+                </div>
+       
+
+
+            <button class="ui green button" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+<%include partials/footer %>
+
