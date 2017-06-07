@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var Asset = require("../models/asset")
 var Note = require("../models/note")
+var middleware = require("../middleware") //automatically requires index.js if you require base directory 
 
 router.get('/', function (req, res) {
   Asset.find({}, function(err, allAssets) {
@@ -13,11 +14,11 @@ router.get('/', function (req, res) {
   });
 });
 
-router.get('/new', isLoggedIn, function (req, res) {
+router.get('/new', middleware.isLoggedIn, function (req, res) {
     res.render("new");
 });
 
-router.post('/', isLoggedIn, function (req, res) {
+router.post('/', middleware.isLoggedIn, function (req, res) {
   var newNote = {
     text: req.body.newAsset.note,
     author: {
@@ -44,6 +45,10 @@ router.post('/', isLoggedIn, function (req, res) {
   });
 });
 
+router.get("", function(req, res) {
+  
+});
+
 router.get("/:id", function(req, res) {
   Asset.findById(req.params.id).populate("notes").exec(function(err, foundAsset) {
     if(err) {
@@ -55,7 +60,7 @@ router.get("/:id", function(req, res) {
   });
 });
 
-router.get("/:id/edit", isLoggedIn, function(req, res) {
+router.get("/:id/edit", middleware.isLoggedIn, function(req, res) {
   Asset.findById(req.params.id, function(err, foundAsset) {
     if(err) {
       res.redirect("/")
@@ -65,7 +70,7 @@ router.get("/:id/edit", isLoggedIn, function(req, res) {
   });
 });
 
-router.put("/:id", isLoggedIn, function(req, res) {
+router.put("/:id", middleware.isLoggedIn, function(req, res) {
   Asset.findByIdAndUpdate(req.params.id, req.body.assetData, function(err, updatedAsset) {
     if (err) {
       res.redirect("/");
@@ -75,7 +80,7 @@ router.put("/:id", isLoggedIn, function(req, res) {
   });
 });
 
-router.delete("/:id", isLoggedIn, function(req, res) {
+router.delete("/:id", middleware.isLoggedIn, function(req, res) {
   Asset.findByIdAndRemove(req.params.id, function(err) {
     if (err) {
       res.redirect("/");
@@ -84,12 +89,5 @@ router.delete("/:id", isLoggedIn, function(req, res) {
     }
   });
 });
-
-function isLoggedIn(req, res, next) {
-  if(req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect("/login");
-}
 
 module.exports = router;
