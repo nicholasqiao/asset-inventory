@@ -9,7 +9,6 @@ var User = require("./models/user")
 var passport = require("passport")
 var LocalStrategy = require("passport-local")
 var passportLocalMongoose = require("passport-local-mongoose")
-var flash = require("connect-flash")
 
 var assetRoutes = require("./routes/assets");
 var noteRoutes = require("./routes/notes");
@@ -21,9 +20,7 @@ app.use(require("express-session")({
   resave: false,
   saveUninitialized: false
 }))
-
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(flash());
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
@@ -31,8 +28,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(function(req, res, next) {
   res.locals.currentUser = req.user;
-  res.locals.flashError = req.flash("error");
-  res.locals.flashSuccess = req.flash("success");
   next();
 });
 app.use(indexRoutes);

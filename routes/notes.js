@@ -2,9 +2,8 @@ var express = require("express");
 var router = express.Router({mergeParams: true});
 var Asset = require("../models/asset")
 var Note = require("../models/note")
-var middleware = require("../middleware")
 
-router.post("/", middleware.isLoggedIn, function(req, res) {
+router.post("/", isLoggedIn, function(req, res) {
   Asset.findById(req.params.id, function(err, foundAsset) {
     if (err) {
       console.log(err);
@@ -31,34 +30,16 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
   })
 });
 
-router.get("/:note_id/edit", middleware.checkNoteOwnership, function (req, res) {
-  Note.findById(req.params.note_id, function(err, foundNote) {
-    if (err) {
-      console.log("cant find note");
-    } else {
-      res.render("notes/edit", {assetID: req.params.id, note: foundNote});
-    }
-  })
+router.get("/:note_id/edit", function(req, res) {
+  res.send("Edit route for note");
 });
 
-router.put("/:note_id", middleware.checkNoteOwnership, function(req, res) {
-    Note.findByIdAndUpdate(req.params.note_id, req.body.note, function(err, updatedNote) {
-      if (err) {
-        res.redirect("/");
-      } else {
-        res.redirect("/assets/" + req.params.id);
-      }
-    });
-});
+function isLoggedIn(req, res, next) {
+  if(req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/login");
+}
 
-router.delete("/:note_id", middleware.checkNoteOwnership, function (req, res) {
-  Note.findByIdAndRemove(req.params.note_id, function(err) {
-    if (err) {
-      res.redirect("/");
-    } else {
-      res.redirect("/assets/" + req.params.id);
-    }
-  });
-});
 
 module.exports = router;

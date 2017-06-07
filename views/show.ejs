@@ -87,18 +87,16 @@
                 <td>
                     <%= note.text %>
                        
-                 
-                        <% if (currentUser && note.author.id.equals(currentUser._id)) { %>
+                        <% if(currentUser){ %>
+                        <% if(note.author.id.toString() == currentUser._id.toString()) { %>
                     <br>
-                    <a href="/assets/<%=asset._id%>/notes/<%=note._id%>/edit">
+                    <a href="">
                         <i class="setting blue icon"></i>
                     </a>
-                    <form class="ui form" id="delete" action="/assets/<%=asset._id%>/notes/<%=note._id%>?_method=DELETE" method="POST">
-                          <button class="ui icon button" id="deleteNote">
-                            <i class="remove red icon"></i>
-                            </button>
-                    </form>
-                   
+                    <a href="">
+                        <i class="remove red icon"></i>
+                    </a>
+                    <% } %>
                     <% } %>
                 </td>
             </tr>
