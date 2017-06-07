@@ -45,4 +45,17 @@
         </div>
     </div>
 </div>
-        
+
+<div class=" ui container">
+    <br>
+   <% if (flashError && flashError.length > 0) { %>
+    <div class="ui red message">
+        <%= flashError %>
+    </div>
+    <% } %>
+    <% if (flashSuccess && flashSuccess.length > 0) { %>
+    <div class="ui green message">
+        <%= flashSuccess %>
+    </div>
+    <% } %>
+</div>

@@ -9,3 +9,8 @@
 .botl {
     padding-top: 10em;
 }
+
+#deleteNote {
+    background:rgba(0,0,0,0.0);
+    margin-left: 10px;
+}

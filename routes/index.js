@@ -2,12 +2,13 @@ var express = require("express");
 var router = express.Router();
 var User = require("../models/user")
 var passport = require("passport")
+var middleware = require("../middleware")
 
 router.get('/', function (req, res) {
   res.render("index", {currentUser: req.user});
 });
 
-router.get("/skb", isLoggedIn, function(req, res) {
+router.get("/skb", middleware.isLoggedIn, function(req, res) {
   res.render("skb");
 })
 
@@ -44,15 +45,8 @@ router.post("/login", passport.authenticate("local", {
 
 router.get("/logout", function(req, res) {
   req.logout();
+  req.flash("success", "Successfully logged out");
   res.redirect("/");
 });
-
-
-function isLoggedIn(req, res, next) {
-  if(req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect("/login");
-}
 
 module.exports = router;

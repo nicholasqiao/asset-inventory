@@ -7,28 +7,47 @@
     <div class="ui middle aligned three column centered grid">
         <div class="row">
             <div class="column center aligned">
-                <div class="row botl icon">
+               <br>
+               <div class=" ui container">
+                   <% if (flashError && flashError.length > 0) { %>
+                    <div class="ui red message">
+                        <%= flashError %>
+                    </div>
+                    <% } %>
+                    <% if (flashSuccess && flashSuccess.length > 0) { %>
+                    <div class="ui green message">
+                        <%= flashSuccess %>
+                    </div>
+                    <% } %>
+                </div>
+               
+                <div class="row icon">
                     <h1>
                         <i class="book icon"></i>
                         Book Of The Lab
                     </h1>
                 </div>
 
-                <form action="" class="ui large form">
+                
                     <div class="ui segment">
+                        <form action="" class="ui large form">
                         <div class="field">
-                            <input type="text" name="search" placeholder="Search...">
+                            <input type="text" name="query" placeholder="Search...">
                         </div>
                         <div class="field">
-                            <div class="ui fluid large grey submit button icon">
+                            <button class="ui grey large fluid button" type="submit">
                                 <i class="search icon"></i>
                                 Search
-                            </div>
+                                </button>
+<!--                            <div class="ui fluid large grey submit button icon">
+                                <i class="search icon"></i>
+                                Search
+                            </div>-->
                         </div>
                         <div class="ui horizontal divider">OR</div>
                         <div class="field">
                             <!--<div class="ui fluid large green submit button icon" action="/new" method="GET">-->
-                            <a href="/assets/new" class="ui fluid large green submit button icon">
+                            <a href="/assets/new" class="ui fluid large green button icon">
                                 <i class="add circle icon"></i>
                                 New
                             </a>
@@ -38,32 +57,33 @@
                         </div>
                         <div class="field">
                             <div class="ui fluid">
-                                <a href="/assets" class="ui fluid large purple submit button icon">
+                                <a href="/assets" class="ui fluid large purple button icon">
                                 <i class="sign in icon"></i>
                                 All Assets
                                 </a>
                             </div>
                         </div>
                         <div class="field">
-                            <a href="/register" class="ui fluid large pink submit button icon">
+                            <a href="/register" class="ui fluid large pink button icon">
                                 <i class="add user icon"></i>
                                 Sign Up
                             </a>
                         </div>
                         <div class="field">
-                            <a href="/login" class="ui fluid large blue submit button icon">
+                            <a href="/login" class="ui fluid large blue button icon">
                                 <i class="sign in icon"></i>
                                 Sign In
                             </a>
                         </div>
                         <div class="field">
-                            <a href="/logout" class="ui fluid large blue submit button icon">
+                            <a href="/logout" class="ui fluid large blue button icon">
                                 <i class="sign out icon"></i>
                                 Logout
                             </a>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                   </div>
+               
             </div>
         </div>
         <a href="http://9.70.152.16/" target="_blank">
