@@ -45,8 +45,16 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
   });
 });
 
-router.get("", function(req, res) {
+router.get("/search", function(req, res) {
+  var url = req.url.substring(14).toString();
   
+  Asset.find({$or:[ {hostname: { $regex : url }}, {ipaddress: { $regex : url }}]}, function(err, foundAssets) {
+    if (err) {
+      console.log("not found")
+    } else {
+      res.render("search", {assets: foundAssets})
+    }
+  });
 });
 
 router.get("/:id", function(req, res) {
