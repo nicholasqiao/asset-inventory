@@ -46,7 +46,7 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
 });
 
 router.get("/search", function(req, res) {
-  var url = req.url.substring(14).toString();
+  var url = req.url.substring(14);
   
   Asset.find({$or:[ {hostname: { $regex : url }}, {ipaddress: { $regex : url }}]}, function(err, foundAssets) {
     if (err) {
