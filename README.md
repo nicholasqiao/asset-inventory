@@ -1,3 +1,3 @@
 # asset-inventory
 
-Testing readme
+Modeled after Colt Steele's "The Web Developer Bootcamp" course
